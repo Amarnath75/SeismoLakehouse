@@ -1,0 +1,18 @@
+rresources:
+  pipelines:
+    bronze_silver_earthquake_etl:
+      name: Bronze_Silver_EarthQuake_Prod
+      configuration:
+        catalog_name: ${var.catalog}
+      libraries:
+        - glob:
+            include: ../src/Notebooks/Bronze_Silver/transformations/** 
+      schema: silver
+      continuous: false
+      development: false
+      photon: true
+      channel: CURRENT
+      catalog: ${var.catalog}
+      serverless: true
+
+      root_path: ../src/Notebooks/Bronze_Silver

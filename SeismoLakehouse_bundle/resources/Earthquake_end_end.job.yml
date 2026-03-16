@@ -1,0 +1,38 @@
+resources:
+  jobs:
+    SeismoLakehouse_End_to_End_pipeline:
+      name: SeismoLakehouse_End_to_End_pipeline
+
+      tasks:
+        - task_key: Bronze_layer
+          notebook_task:
+            notebook_path: ../src/Notebooks/Ingestion_Bronze.ipynb
+            base_parameters:
+              catalog_name: ${var.catalog}
+            source: WORKSPACE
+
+        - task_key: Silver_layer
+          depends_on:
+            - task_key: Bronze_layer
+          pipeline_task:
+            pipeline_id: 676a3d7e-d09b-4e8e-9110-76f9f54412db
+            full_refresh: false
+
+        - task_key: Gold_layer
+          depends_on:
+            - task_key: Silver_layer
+          dashboard_task:
+            subscription: {}
+            dashboard_id: 01f120608f3c150f8cb95a4ee87a58fa
+            warehouse_id : 70ace0aac148cd5
+
+      queue:
+        enabled: true
+
+      parameters:
+        - name: catalog_name
+          default: ${var.catalog}
+
+      performance_target: PERFORMANCE_OPTIMIZED
+
+      
