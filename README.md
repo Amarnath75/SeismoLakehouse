@@ -326,8 +326,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 - [USGS Earthquake API](https://earthquake.usgs.gov/fdsnws/event/1/) for providing free real-time seismic data
 - [Databricks Free Edition](https://www.databricks.com/try-databricks) for the full Lakehouse platform at zero cost
-- Tutorial reference: [End-to-End Databricks Data Engineering Project](https://www.youtube.com/watch?v=xkrUAcRcpjc)
 
----
-
-<p align="center">Built with ❤️ using Databricks Lakehouse Platform</p>
